@@ -8,10 +8,12 @@ import 'package:quran_app/pages/tabs/doa.tab.dart';
 import 'package:quran_app/pages/tabs/dzikir.tab.dart';
 import 'package:quran_app/pages/tabs/surah_tab.dart';
 import 'package:quran_app/theme.dart';
+import 'dart:async';
+// import 'package:flutter/cupertino.dart';
 
 class HomeScreen extends StatelessWidget {
   static String routeName = 'home_screen';
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ AppBar _appBar() => AppBar(
       actions: [
         IconButton(
             onPressed: () {
-              Future<void> _onSearch() async {
+              Future<void> _onSearch(BuildContext context) async {
                 // Show search dialog
                 final query = await showSearch<String>(
                   context: context,
@@ -191,7 +193,7 @@ Column _salam() => Column(
       ],
     );
 
-class SurahSearchDelegate extends SearchDelegate {
+class SurahSearchDelegate extends SearchDelegate<String> {
   Future<List<Surah>> getListSurah() async {
     String data = await rootBundle.loadString('assets/data/list-surah.json');
     return surahFromJson(data);
@@ -202,8 +204,10 @@ class SurahSearchDelegate extends SearchDelegate {
     return FutureBuilder<List<Surah>>(
       future: getListSurah(),
       builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Error loading surah data');
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Text('Error loading surah data');
         } else if (snapshot.hasData) {
           final surahList = snapshot.data!;
 
@@ -221,11 +225,11 @@ class SurahSearchDelegate extends SearchDelegate {
                 title: Text(filteredList[snapshot].nama_latin),
                 onTap: () {
                   // Set selected surah and close search
-                  this.query = filteredList[snapshot].nama_latin;
-                  this.close(
+                  query = filteredList[snapshot].nama_latin;
+                  close(
                       context,
-                      filteredList[
-                          snapshot]); // Or navigate to surah details screen
+                      filteredList[snapshot]
+                          as String); // Or navigate to surah details screen
                 },
               );
             },
@@ -254,25 +258,27 @@ class SurahSearchDelegate extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, null);
+        close(context, '');
       },
     );
   }
 
- 
-@override
-Widget buildResults(BuildContext context) {
-  final futureSurahList = getListSurah();
-
-  return FutureBuilder<List<Surah>>(
-    future: futureSurahList,
-    builder: (context, snapshot) {
-      final getSurahList = snapshot.data!;
+  @override
+  Widget buildResults(BuildContext context) {
+    return FutureBuilder<List<Surah>>(
+      future: getListSurah(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Text('Error loading surah data');
+        } else if (snapshot.hasData) {
+          final surahList = snapshot.data!;
 
           // Filter suggestions based on query
-          final filteredList = snapshot.data!
-              .where((surahName) =>
-                  surahName.toLowerCase().contains(query.toLowerCase()))
+          final filteredList = surahList
+              .where((surah) =>
+                  surah.nama_latin.toLowerCase().contains(query.toLowerCase()))
               .toList();
 
           // Build suggestion widgets
@@ -284,18 +290,17 @@ Widget buildResults(BuildContext context) {
                 subtitle: Text(filteredList[index].arti),
                 onTap: () {
                   // Set selected surah and close search
-                  this.query = filteredList[index].nama_latin;
-                  this.close(
-                      context,
-                      filteredList[
-                          index]); // Or navigate to surah details screen
+                  query = filteredList[index].nama_latin;
+                  close(context, filteredList[index].nama_latin);
+                  // Or navigate to surah details screen
                 },
               );
             },
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator());
         }
-  );
+      },
+    );
   }
 }

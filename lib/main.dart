@@ -11,7 +11,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,13 @@ class MainApp extends StatelessWidget {
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
-        HomeScreen.routeName:(context) => HomeScreen(),
-        DetailScreen.routeName:(context) =>DetailScreen(id_surah: ModalRoute.of(context)?.settings.arguments as String,),
-        PagiScreen.routeName:(context) => PagiScreen(),
-        PetangScreen.routeName:(context) => PetangScreen(),
-        SholatScreen.routeName:(context) => SholatScreen()
+        HomeScreen.routeName: (context) => HomeScreen(),
+        DetailScreen.routeName: (context) => DetailScreen(
+              id_surah: ModalRoute.of(context)?.settings.arguments as String,
+            ),
+        PagiScreen.routeName: (context) => PagiScreen(),
+        PetangScreen.routeName: (context) => PetangScreen(),
+        SholatScreen.routeName: (context) => SholatScreen()
       },
     );
   }

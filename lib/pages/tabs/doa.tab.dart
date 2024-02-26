@@ -21,7 +21,7 @@ class DoaTab extends StatelessWidget {
             color: Colors.grey.withOpacity(0.1),
             height: 1,
           ),
-          itemCount: snapshot.data!.length,
+          itemCount: snapshot.data != null ? snapshot.data!.length : 0,
         );
       },
     );
