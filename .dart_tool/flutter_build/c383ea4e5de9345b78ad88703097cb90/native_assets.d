@@ -1,0 +1,1 @@
+ E:\\ForkCode\\quran_app\\.dart_tool\\flutter_build\\c383ea4e5de9345b78ad88703097cb90\\native_assets.yaml: 

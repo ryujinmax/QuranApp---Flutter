@@ -1,0 +1,4 @@
+#Thu May 02 08:14:35 WIB 2024
+base.0=E\:\\ForkCode\\quran_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

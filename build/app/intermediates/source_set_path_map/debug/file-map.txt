@@ -1,0 +1,13 @@
+com.example.quran_app-jetified-annotation-experimental-1.1.0-0 C:\Users\rtid\.gradle\caches\transforms-3\09db32a73384ac2dccccf916d7dc0262\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.quran_app-core-1.6.0-1 C:\Users\rtid\.gradle\caches\transforms-3\168e459aae59caaab0d2c703cf9d67ab\transformed\core-1.6.0\res
+com.example.quran_app-jetified-window-1.0.0-beta04-2 C:\Users\rtid\.gradle\caches\transforms-3\29fe38a5fd6c3bf46cd8e59c2b63489e\transformed\jetified-window-1.0.0-beta04\res
+com.example.quran_app-jetified-window-java-1.0.0-beta04-3 C:\Users\rtid\.gradle\caches\transforms-3\978180320ed1d29d66a82edc9d24751e\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.quran_app-debug-4 E:\ForkCode\quran_app\android\app\src\debug\res
+com.example.quran_app-main-5 E:\ForkCode\quran_app\android\app\src\main\res
+com.example.quran_app-pngs-6 E:\ForkCode\quran_app\build\app\generated\res\pngs\debug
+com.example.quran_app-resValues-7 E:\ForkCode\quran_app\build\app\generated\res\resValues\debug
+com.example.quran_app-rs-8 E:\ForkCode\quran_app\build\app\generated\res\rs\debug
+com.example.quran_app-mergeDebugResources-9 E:\ForkCode\quran_app\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.quran_app-mergeDebugResources-10 E:\ForkCode\quran_app\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.quran_app-merged_res-11 E:\ForkCode\quran_app\build\app\intermediates\merged_res\debug
+com.example.quran_app-packaged_res-12 E:\ForkCode\quran_app\build\path_provider_android\intermediates\packaged_res\debug
